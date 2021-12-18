@@ -1,5 +1,7 @@
 package com.example.nemologicchecker.ui.home;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static java.lang.Integer.parseInt;
 
 import android.app.Activity;
@@ -21,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,14 +56,19 @@ public class HomeFragment extends Fragment {
     private Thread workerThread = null; // 문자열 수신에 사용되는 쓰레드
     private byte[] readBuffer; // 수신 된 문자열을 저장하기 위한 버퍼
     private int readBufferPosition; // 버퍼 내 문자 저장 위치
-    private TextView textViewReceive; // 수신 된 데이터를 표시하기 위한 텍스트 뷰
 
     private OutputStream outputStream = null; // 블루투스에 데이터를 출력하기 위한 출력 스트림
     private EditText editTextSend; // 송신 할 데이터를 작성하기 위한 에딧 텍스트
     private Button buttonSend; // 송신하기 위한 버튼
+    // ------------------------------------------------- View
+    private TextView textViewHome;
+    private TextView textViewReceive; // Show Percent
+    private ImageView imageViewCatClear;
+    private ImageView imageViewCatLogic;
+    private boolean isClear = FALSE;
 
     ProgressBar progressBar;
-    int progressData = 40;
+    int progressData = 0;
 
     List<String> list_device = new ArrayList<>();
     ArrayAdapter<String> arrayAdapterDevice;// = new ArrayAdapter<String>(getContext(), android.R.layout.select_dialog_singlechoice);
@@ -82,6 +90,24 @@ public class HomeFragment extends Fragment {
         progressBar.setProgress(progressData);
     }
 
+    public void showCatClear()
+    {
+        textViewHome.setText("CLEAR!!");
+        imageViewCatClear.setVisibility(View.VISIBLE);
+        imageViewCatLogic.setVisibility(View.INVISIBLE);
+        isClear = TRUE;
+    }
+
+    public void showCatLogic()
+    {
+        textViewHome.setText("NEMO NEMO LOGIC");
+        imageViewCatClear.setVisibility(View.INVISIBLE);
+        imageViewCatLogic.setVisibility(View.VISIBLE);
+        progressData = 0;
+        setProgress(progressData);
+        isClear = FALSE;
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -89,14 +115,25 @@ public class HomeFragment extends Fragment {
 
         View root = binding.getRoot();
 
-        textViewReceive = binding.textHome;
+        textViewHome = binding.textHome;
+        textViewReceive = binding.textPercent;
+        imageViewCatClear = binding.imgCatClear;
+        imageViewCatLogic = binding.imgCatLogic;
+        Button testButton = binding.button;
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                if(isClear)
+                    showCatLogic();
+                else
+                    showCatClear();
+            } });
 
         progressBar = (ProgressBar)binding.proBar;
         progressBar.setIndeterminate(false);
         progressBar.setMax(100);
-        progressBar.setProgress(progressData);
+        showCatLogic();
+        progressBar.setProgress(50);
 
-        setProgress(40);
         // --- func
 //        View btn_throw_dice = binding.btnDice;
 //        View bluetooth_list = binding.listviewScore;
@@ -138,17 +175,17 @@ public class HomeFragment extends Fragment {
                 String deviceName = arrayAdapterDevice.getItem(id);
                 connectDevice(deviceName);
 
-                // NOTE: ha
-                AlertDialog.Builder innBuilder = new AlertDialog.Builder(getContext());
-                innBuilder.setMessage(deviceName);
-                innBuilder.setTitle("당신이 선택한 것은 ");
-                innBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                innBuilder.show();
+                // NOTE: don't need
+//                AlertDialog.Builder innBuilder = new AlertDialog.Builder(getContext());
+//                innBuilder.setMessage(deviceName);
+//                innBuilder.setTitle("당신이 선택한 것은 ");
+//                innBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener()
+//                {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                innBuilder.show();
             }
         });
         alertBuilder.show();
@@ -279,6 +316,10 @@ public class HomeFragment extends Fragment {
                                     try {
                                         int parseData = parseInt(msg);
                                         setProgress(parseData);
+                                        if(parseData == 100)
+                                            showCatClear();
+                                        else if(parseData == -1)
+                                            showCatLogic();
                                     } catch (NumberFormatException e) {
                                         Log.d("DataReceive", "error:" + msg);
                                     }

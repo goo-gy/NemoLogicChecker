@@ -4,26 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".ui.home.HomeFragment">
-
+    <Button
+        android:id="@+id/button"
+        android:text="HI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    />
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:text="Nemo Nemo Logic"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textColor="#bb3333"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11"
+        tools:layout_editor_absoluteX="-134dp" />
+
+    <ImageView
+        android:id="@+id/imgCatClear"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/cat"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
+    <ImageView
+        android:id="@+id/imgCatLogic"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="190dp"
+        android:src="@drawable/cat_logic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_percent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.735"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <ProgressBar
+        android:id="@+id/pro_bar"
         style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:max="100"
-        android:id="@+id/pro_bar" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        tools:layout_editor_absoluteX="24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
