@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment {
 
     public void showCatClear()
     {
-        textViewHome.setText("CLEAR!!");
+        textViewHome.setText("CLEAR!");
         imageViewCatClear.setVisibility(View.VISIBLE);
         imageViewCatLogic.setVisibility(View.INVISIBLE);
         isClear = TRUE;
@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
 
     public void showCatLogic()
     {
-        textViewHome.setText("NEMO NEMO LOGIC");
+        textViewHome.setText("NEMO LOGIC");
         imageViewCatClear.setVisibility(View.INVISIBLE);
         imageViewCatLogic.setVisibility(View.VISIBLE);
         progressData = 0;
@@ -119,20 +119,19 @@ public class HomeFragment extends Fragment {
         textViewReceive = binding.textPercent;
         imageViewCatClear = binding.imgCatClear;
         imageViewCatLogic = binding.imgCatLogic;
-        Button testButton = binding.button;
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                if(isClear)
-                    showCatLogic();
-                else
-                    showCatClear();
-            } });
+//        Button testButton = binding.button;
+//        testButton.setOnClickListener(new View.OnClickListener() {
+//            @Override public void onClick(View view) {
+//                if(isClear)
+//                    showCatLogic();
+//                else
+//                    showCatClear();
+//            } });
 
         progressBar = (ProgressBar)binding.proBar;
         progressBar.setIndeterminate(false);
         progressBar.setMax(100);
         showCatLogic();
-        progressBar.setProgress(50);
 
         // --- func
 //        View btn_throw_dice = binding.btnDice;
