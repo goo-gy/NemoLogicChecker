@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/bluetooth_list.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/fragment_notifications.xml" value="0.15416666666666667" />
+        <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
+        <entry key="..\:/Users/lkukh/AndroidStudioProjects/NemoLogicChecker/app/src/main/res/layout/listview_item.xml" value="0.24947916666666667" />
       </map>
     </option>
   </component>
